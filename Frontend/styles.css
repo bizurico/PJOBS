@@ -1,0 +1,251 @@
+  /* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* Cabeçalho com logotipo/link */
+.top-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #007bff;
+}
+
+.logo {
+  color: #007bff;
+  font-size: 4rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* Body com altura mínima e flex para manter o rodapé fixo */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #e0f0ff;
+}
+
+/* Container centralizado para conteúdo */
+.container {
+  max-width: 400px;
+  margin: 80px auto 40px auto;
+  background: white;
+  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Títulos */
+h1 {
+  margin-bottom: 20px;
+  color: #0057b8;
+  text-align: center;
+}
+
+/* Formulário */
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+}
+
+form input,
+form select {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: border-color 0.3s;
+}
+
+form input:focus,
+form select:focus {
+  border-color: #0057b8;
+  outline: none;
+}
+
+/* Botão */
+button {
+  margin-top: 25px;
+  width: 100%;
+  padding: 10px;
+  background-color: #0057b8;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #003d80;
+}
+
+/* Parágrafo abaixo do formulário */
+p {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #555;
+}
+
+p a {
+  color: #0057b8;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+p a:hover {
+  text-decoration: underline;
+}
+
+/* Rodapé fixo no final da página */
+footer {
+  background-color: #0057b8;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  flex-shrink: 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.form-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.form-container input,
+.form-container button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-container button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+body.tela-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #e0f0ff;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.cliente-container {
+  max-width: 1100px; /* Ou outro valor que preferir, ex: 960px, 1200px */
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem; /* Espaçamento interno para não colar nas bordas */
+  /* Se já tiver outras propriedades, mantenha-as e adicione/ajuste estas */
+}
+
+/* Estilo para os cards de cliente e profissional */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.card h3 {
+  margin-bottom: 0.5rem;
+}
+
+.card p {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.card button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background-color: #0056b3;
+}
+
+/* (Adicione estas novas regras ao seu styles.css) */
+
+.area-card {
+  background-color: #f0f8ff; /* Um azul claro, por exemplo */
+  border: 1px solid #add8e6;
+  border-radius: 8px;
+  padding: 1.5rem; /* Mais padding para destacar */
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.area-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.area-card h3 {
+  color: #0057b8; /* Cor principal do seu tema */
+  margin-bottom: 0.75rem;
+}
+
+.area-card p {
+  color: #333;
+  font-size: 0.9rem;
+}
+
+/* Estilo para o botão "Voltar" (você usou a classe .btn-voltar no HTML que sugeri) */
+.btn-voltar {
+  display: inline-block; /* Para não ocupar a largura toda se não for 'button' puro */
+  width: auto; /* Largura automática baseada no conteúdo */
+  padding: 0.6rem 1.2rem;
+  margin-bottom: 1.5rem; /* Espaço abaixo do botão */
+  background-color: #6c757d; /* Uma cor secundária, cinza */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.btn-voltar:hover {
+  background-color: #5a6268;
+}
