@@ -1,0 +1,936 @@
+/* ==================================== */
+/* RESET E GERAL               */
+/* ==================================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #e0f0ff;
+  flex-shrink: 0;
+}
+
+.feedback-avaliado {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: #28a745; /* Verde */
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* Estilos para a lista de comentários no modal */
+.lista-comentarios {
+    max-height: 300px; /* Limita a altura e cria rolagem se tiver muitos */
+    overflow-y: auto;
+    text-align: left;
+    margin-top: 15px;
+    padding-right: 5px;
+}
+
+.item-comentario {
+    background-color: #f8f9fa;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.item-comentario strong {
+    display: block;
+    color: #007bff;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+.item-comentario .nota-estrelas {
+    color: #FFD700;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.item-comentario p {
+    color: #555;
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ==================================== */
+/* HEADER E SIDEBAR            */
+/* ==================================== */
+header.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 2rem;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    width: 100%;
+}
+
+.sidebar{
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+  color: #007bff;
+  font-size: 3rem; 
+  font-weight: bold;
+  text-decoration: none;
+  margin: 20px;
+  margin-top: 100px;
+}
+
+.sidebar {
+    position: relative; /* A âncora para o menu */
+}
+
+#user-sidebar-btn {
+    display: flex; 
+    align-items: center;
+    background: #fff; 
+    border: none; 
+    border-radius: 1.5em;
+    padding: 8px 14px; 
+    box-shadow: 0 2px 8px rgba(0,0,0,.13);
+    font-weight: 600; 
+    font-size: 1.1em; 
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#user-sidebar-btn:hover {
+    background-color: #f0f0f0;
+}
+
+#user-sidebar-btn .avatar {
+    background: #7bb7fa; 
+    color: #fff; 
+    border-radius: 50%;
+    width: 2em; 
+    height: 2em; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+    margin-right: .7em;
+    font-size: 1.3em;
+}
+
+.sidebar-ola {
+    color: #000000;
+    font-weight: 500;
+    margin-right: .6em;
+    font-size: 1.1em;
+}
+
+/* --- ESTADO ESCONDIDO DO MENU --- */
+.sidebar-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.2s ease-in-out;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    padding: 0.5em;
+    overflow: hidden;
+}
+
+/* --- ESTADO VISÍVEL DO MENU (ativado pelo JS) --- */
+.sidebar-menu.is-open {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- LINKS DENTRO DO MENU --- */
+.sidebar-menu a {
+    display: block; 
+    color: #036; 
+    padding: 9px 18px;
+    border-radius: 1em; 
+    text-decoration: none;
+    transition: background .15s;
+}
+
+.sidebar-menu a:hover { 
+    background: #f3f3fc;
+} 
+
+/* ==================================== */
+/* FORMULÁRIOS                 */
+/* ==================================== */
+.container, .form-container {
+    width: 20%; /* Ocupa a maior parte da largura */
+    max-width: 60%; /* Garante que não ultrapasse 95% */
+  margin: 80px auto 40px auto;
+  background: white;
+  padding: 25px 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  text-align: center;
+  flex-shrink: 0;
+}
+
+body.tela-login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #0057b8;
+  text-align: center;
+}
+
+form label {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+  color: #333;
+  text-align: left; /* Melhora a legibilidade */
+}
+
+form input, form select {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 15px;
+  transition: border-color 0.3s;
+}
+
+form input:focus, form select:focus {
+  border-color: #0057b8;
+  outline: none;
+}
+
+/* Ajustes para o texto "Não tem conta?" no final dos formulários */
+
+.texto-troca-form {
+  /* Aumenta o espaço entre o botão "Entrar" e este texto */
+  margin-top: 20px; /* Você pode ajustar este valor como quiser (ex: 40px) */
+}
+
+.texto-troca-form a:hover{
+  color: #135caa;
+}
+
+.texto-troca-form a {
+  /* Define a cor do link "Cadastre-se" para um azul vibrante */
+  color: #007bff;
+  transition: color 0.2s ease-in-out; 
+}
+
+/* Esta regra importante garante que o link continue azul mesmo depois de visitado 
+.texto-troca-form a:visited {
+  color: #007bff;
+}
+*/
+/* ==================================== */
+/* BOTÕES                      */
+/* ==================================== */
+button, .btn {
+  border: none;
+  border-radius: 1em;
+  background: #1976d2;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1em;
+  cursor: pointer;
+  margin-top: 25px;
+  width: 100%;
+  transition: background .14s;
+}
+
+button:hover, .btn:hover {
+  background: #135caa;
+}
+
+.btn-voltar {
+  position: fixed; top: 16px; right: 16px; background: #f1f4f9;
+  color: #036; border: none; border-radius: 1em; font-size: 1.1em;
+  padding: 8px 18px; box-shadow: 0 2px 6px rgba(0,0,0,.06);
+  cursor: pointer;
+  z-index: 22;
+  width: auto; /* Correção para não ocupar 100% da largura */
+  margin-top: 0; /* Correção para não ter margem extra */
+}
+
+/* ==================================== */
+/* CARDS                       */
+/* ==================================== */
+.cliente-container {
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.card, .area-card {
+    background: #fff;
+    border-radius: 1em;
+    box-shadow: 0 2px 8px rgba(0,0,0,.09);
+    padding: 1.5rem;
+    margin: 0; /* Removida margem individual para o grid cuidar */
+    text-align: center;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border-top: 4px solid #007bff;
+}
+
+.area-card {
+    cursor: pointer;
+    border-top: 4px solid #28a745;
+}
+
+.card:hover, .area-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.card h3, .area-card h3 {
+  margin-bottom: 0.75rem;
+}
+
+.card p, .area-card p {
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.card-avaliacao {
+    display: flex;
+    flex-direction: column; /* Coloca as estrelas em cima do texto */
+    align-items: center;
+    gap: 5px; /* Espaço entre as estrelas e o texto */
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.card-avaliacao .estrelas {
+    font-size: 1.2rem; /* Tamanho dos ícones de estrela */
+    display: flex;
+    gap: 3px; /* Espaço entre cada estrela */
+}
+
+/* Cor da estrela preenchida */
+.card-avaliacao .fa-solid.fa-star {
+    color: #FFD700; 
+}
+
+/* Cor da estrela vazia */
+.card-avaliacao .fa-regular.fa-star {
+    color: #ccc;
+}
+
+.card-avaliacao.sem-avaliacao {
+    color: #999;
+    font-style: italic;
+}
+
+/* ==================================== */
+/* MODAIS                      */
+/* ==================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 25px 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 450px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    /* ESSENCIAL: Define o contexto para o posicionamento do botão de fechar */
+    position: relative; 
+    min-height: 120px;
+}
+
+.modal-content h3 {
+    font-size: 1.6rem;    /* Aumenta o tamanho do título */
+    margin-bottom: 1rem;    /* Aumenta o espaço abaixo do título */
+    color: #333;           /* Garante uma cor escura e legível */
+}
+
+/* Estiliza especificamente o campo de texto da descrição do serviço */
+#descricao-solicitacao {
+    min-height: 300px;  /* Define uma altura mínima bem maior para o campo */
+    min-width: 300px;
+    font-size: 1rem;      /* Aumenta a fonte do texto que o usuário digita */
+    resize: vertical;     /* Permite que o usuário aumente a altura se precisar */
+}
+
+/* Opcional: Aumenta também a fonte do placeholder */
+#descricao-solicitacao::placeholder {
+    font-size: 1rem;
+}
+
+/* --- BOTÃO DE FECHAR CORRIGIDO --- */
+.modal-close {
+    width: 10%;
+    position: absolute;   /* Posicionamento absoluto em relação ao .modal-content */
+    top: 10px;            /* 10px do topo */
+    left: 350px;          /* 15px da direita */
+    background: color #007bff;
+    border: none;
+    font-size: 1.5rem;    /* Tamanho do 'X' */
+    color: white;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0;
+}
+
+
+
+/* --- ESTRELAS CORRIGIDAS --- */
+.estrelas-avaliacao {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Espaçamento entre as estrelas */
+}
+
+.estrelas-avaliacao span {
+    cursor: pointer;
+}
+
+.estrelas-avaliacao i {
+    font-size: 1.5rem; /* Tamanho dos ícones de estrela */
+    color: #ccc;
+    transition: color 0.2s, transform 0.2s;
+}
+
+/* Efeito ao passar o mouse */
+.estrelas-avaliacao span:hover i,
+.estrelas-avaliacao i.hover-preview {
+    color: #FFD700; /* Dourado */
+    transform: scale(1.1);
+}
+
+/* Estilo para as estrelas selecionadas */
+.estrelas-avaliacao i.fa-solid.fa-star {
+    color: #FFD700;
+}
+
+textarea#comentario-avaliacao {
+    width: calc(100% - 20px); /* Ajusta a largura */
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical; /* Permite redimensionar verticalmente */
+    min-height: 80px;
+    font-family: inherit; /* Mantém a fonte do sistema */
+    font-size: 16px;
+    min-height: 120px; /* Define uma altura mínima maior (ajuste o valor como quiser) */
+    font-size: 1rem;   /* Garante que o texto seja legível */
+}
+
+/* ==================================== */
+/* OUTROS COMPONENTES          */
+/* ==================================== */
+.feedback-message {
+    width: 100%;
+    padding: 2rem;
+    text-align: center;
+    color: #555;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    border: 1px dashed #ccc;
+    grid-column: 1 / -1;
+}
+
+.feedback-message.erro {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-color: #f5c6cb;
+}
+
+.perfil-nav {
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.tab-link {
+    background-color: transparent;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    width: auto; /* Correção para não ocupar 100% da largura */
+    margin-top: 0; /* Correção para não ter margem extra */
+}
+
+.tab-link:hover {
+    color: #007bff;
+}
+
+.tab-link.active {
+    color: #007bff;
+    border-bottom: 2px solid #007bff;
+}
+
+.tab-content {
+    display: none;
+}
+
+footer {
+  background-color: #0057b8;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  flex-shrink: 0; /* Impede que o rodapé encolha */
+  margin-top: auto; /* Empurra o rodapé para o final do flex container (body) */
+}
+
+#modal-confirmar-exclusao .form-group {
+    text-align: left;
+    margin: 20px 0;
+}
+#modal-confirmar-exclusao input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+}
+#modal-confirmar-exclusao .modal-actions {
+    display: flex;
+    justify-content: flex-end; /* Alinha os botões à direita */
+    gap: 10px;
+    margin-top: 20px;
+}
+#modal-confirmar-exclusao .modal-actions button {
+    width: auto; /* Faz os botões terem larguras diferentes */
+    margin-top: 0;
+}
+
+.danger-zone {
+    border: 2px solid #dc3545;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 30px;
+    background-color: #f8d7da;
+}
+.danger-zone h3 {
+    color: #721c24;
+}
+.btn-perigo {
+    background-color: #dc3545; /* Vermelho */
+    width: auto;
+    padding: 10px 20px;
+}
+.btn-perigo:hover {
+    background-color: #c82333;
+}
+
+
+.chat-container {
+    display: flex;
+    height: calc(100vh - 80px); /* Altura da tela menos a altura do header */
+    width: 100%;
+    background-color: #fff;
+}
+
+#lista-conversas-container {
+    width: 30%;
+    max-width: 350px;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+}
+
+#lista-conversas-container header {
+    padding: 1rem;
+    border-bottom: 1px solid #ddd;
+}
+
+#lista-conversas {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+
+.conversa-item {
+    padding: 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    font-weight: bold;
+}
+.conversa-item:hover {
+    background-color: #f8f9fa;
+}
+.conversa-item.active {
+    background-color: #e9ecef;
+}
+
+#janela-chat {
+    width: 70%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+/* (Estilos para as mensagens e o form de envio virão na próxima fase) */
+
+/* ======================================================== */
+/*          ESTILOS PARA TELAS PEQUENAS (MOBILE) - VERSÃO CORRIGIDA         */
+/* ======================================================== */
+
+/* Aplica estas regras quando a tela tiver 768px de largura ou menos */
+@media (max-width: 1000px) {
+
+    /* --- 1. LAYOUT E CONTAINERS GERAIS --- */
+    
+    /* Força os containers principais a ocuparem a tela toda, com pequenas margens */
+.cliente-container, .profissional-container, .container, .form-container {
+    width: 70%; /* Ocupa a maior parte da largura */
+    max-width: 95%; /* Garante que não ultrapasse 95% */
+    /* CENTRALIZA o container horizontalmente */
+    margin: 20px auto; 
+    
+    padding: 1.5rem 1rem;
+    border-radius: 8px; /* Mantém as bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* Mantém a sombra */
+    
+    /* PERMITE O CRESCIMENTO: Remove restrições de altura e permite rolagem */
+    flex-shrink: 0; /* Impede que o container encolha se o body for flex */
+}
+
+    /* --- 2. HEADER E NAVEGAÇÃO --- */
+    .logo {
+        font-size: 1.8rem;
+        margin: 0;
+    }
+
+    #user-sidebar-btn {
+        font-size: 1.6rem;
+        padding: 8px 12px;
+    }
+
+    .sidebar-menu a {
+        font-size: 1.6rem;
+        padding: 14px 20px;
+    }
+
+
+    /* --- 3. TIPOGRAFIA (FONTES) --- */
+
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 2.3rem; }
+    p, label, input, select, textarea { font-size: 1rem; }
+    
+
+    /* --- 4. BOTÕES (CONSISTÊNCIA) --- */
+    
+    /* Estilo PADRÃO para a maioria dos botões no mobile */
+    button, .btn {
+        padding: 15px 20px;
+        font-size: 1.2rem;
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    /* EXCEÇÕES: Regras para botões que NÃO devem ocupar a largura toda ou que são menores */
+    .tela-login .form-container button,
+    .tela-cadastro .container button {
+        padding: 14px 20px;
+    }
+
+    .card button, .modal-actions button {
+        width: 60%;
+        padding: 18px 18px;
+        font-size: 2rem;
+        margin: 5px;
+    }
+
+    .card-avaliacao.sem-avaliacao{
+        font-size: 1.8rem;
+    }
+    /* --- 5. CARDS E GRIDS --- */
+
+    .card-grid {
+        grid-template-columns: 1fr; /* Força uma única coluna para todos os grids */
+        gap: 1.2rem;
+    }
+    
+    .card h3, .area-card h3 {
+        font-size: 2.3rem; /* Seu tamanho de fonte preferido */
+    }
+
+    /* Aplica o estilo de parágrafo a TODOS os cards (.card e .area-card) */
+    .card p, .area-card p {
+        font-size: 1.8rem; /* Seu tamanho de fonte preferido */
+        line-height: 1.6;  /* Seu espaçamento entre linhas preferido */
+    }
+
+    /* --- 6. FORMULÁRIOS E MODAIS --- */
+
+    #input-busca {
+        padding: 16px 20px;
+    }
+    #input-busca::placeholder {
+        font-size: 1.2rem;
+    }
+
+    #modal-solicitacao .modal-content {
+        /* Ocupa 95% da largura da tela, deixando pequenas margens */
+        width: 95%;
+        min-width: 70%;
+        /* Define uma altura mínima bem maior */
+        min-height: 400px; /* Você pode aumentar este valor (ex: 450px) */
+        /* Aumenta o espaçamento interno para o conteúdo "respirar" */
+        padding: 25px;
+
+        /* Garante que o conteúdo interno se organize bem */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Empurra os botões para o final */
+    }
+
+    #modal-content h3, p{
+        font-size: 1.8rem;
+    }
+    .modal-content h3{
+        font-size: 3rem;
+    }
+    
+    #btn-voltar-para-areas,
+    #btn-voltar-categorias {
+        font-size: 1.6rem; /* Mesmo tamanho de fonte do #user-sidebar-btn */
+        padding: 8px 14px; /* Mesmo padding do #user-sidebar-btn */
+        width: auto;       /* Garante que ele não ocupe a largura toda */
+        margin-top: 25px;     /* Remove a margem extra da regra geral */
+    }
+    .tela-cadastro .container {
+    width: 80%;          /* Ocupa a maior parte da tela */
+    max-width: 500px;     /* Limita a largura máxima mesmo no mobile */
+    margin: 30px auto;    /* Centraliza e dá um respiro em cima/embaixo */
+    max-height: 85vh;     /* Limita a altura a 85% da tela */
+    overflow: hidden;     /* Esconde qualquer conteúdo que vaze DO CONTAINER */
+    display: flex;        /* Usa flexbox para organizar o conteúdo interno */
+    flex-direction: column; /* Organiza h2, form, p em coluna */
+}
+
+/* 2. Faz o FORMULÁRIO ser a área de rolagem */
+#formCadastro {
+    overflow-y: auto;  /* Adiciona a barra de rolagem vertical APENAS NO FORM */
+    flex-grow: 1;      /* Faz o formulário ocupar o espaço vertical disponível */
+    padding: 0 15px 15px 15px; /* Adiciona padding interno, especialmente embaixo */
+    margin-right: -15px; /* Compensa o padding para alinhar a scrollbar (truque) */
+}
+
+/* 3. Garante que o título e o link "Já tem conta?" fiquem fixos */
+.tela-cadastro .container h2 {
+    flex-shrink: 0; /* Impede que o título encolha */
+    padding: 0 15px; /* Adiciona padding lateral ao título */
+}
+.tela-cadastro .container p.texto-troca-form {
+    flex-shrink: 0; /* Impede que o parágrafo encolha */
+    padding: 15px;
+    margin-top: 0;
+}
+
+/* ======================================================== */
+/* ESTILO COMPLETO PARA A PÁGINA DE CHAT           */
+/* ======================================================== */
+
+/* Garante que o chat ocupe a tela inteira */
+html, body.pagina-chat {
+    height: 100%;
+    overflow: hidden; /* Impede a rolagem do body */
+    margin: 0;
+    padding: 0;
+}
+
+.chat-container {
+    display: flex;
+    width: 100%;
+    height: 94%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* As duas "telas" do chat (lista e janela) */
+#lista-conversas-container, #janela-chat {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    transition: transform 0.3s ease-in-out;
+    border-right: none !important;
+}
+
+/* Layout da TELA 2 (Janela do Chat) */
+#janela-chat {
+    transform: translateX(100%); 
+}
+.chat-container.chat-aberto #janela-chat {
+    transform: translateX(0); 
+}
+.chat-container.chat-aberto #lista-conversas-container {
+    transform: translateX(-100%); 
+}
+
+
+/* Cabeçalho das telas de chat */
+.chat-header {
+    height: 55px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 10px 1rem; /* Padding menor */
+    background-color: #f0f2f5;
+    border-bottom: 1px solid #ddd;
+    flex-shrink: 0;
+}
+.chat-header h1, .chat-header h2 {
+    font-size: 1.1rem; /* Fonte menor */
+    margin: 0;
+}
+.btn-voltar-chat {
+    background: none; 
+    border: none; 
+    font-size: 1.2rem;
+    color: #007bff;
+    margin-right: 15px; 
+    cursor: pointer; 
+    padding: 0;
+    width: 10%;
+    margin-bottom: 15px;
+}
+
+/* Ícone/Avatar do perfil */
+.chat-avatar {
+    width: 40px; height: 40px;
+    background-color: #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: white;
+    margin-right: 10px;
+}
+
+/* Lista de conversas */
+.lista-items {
+    overflow-y: auto;
+    flex-grow: 1;
+}
+.conversa-item {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+.conversa-item:hover { background-color: #f8f9fa; }
+
+/* Área das mensagens (a parte que rola) */
+#mensagens-container {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #e5ddd5;
+}
+
+/* Bolhas de mensagem */
+.mensagem-balao {
+    max-width: 75%; padding: 8px 12px; border-radius: 8px;
+    margin-bottom: 10px; line-height: 1.4; word-wrap: break-word;
+}
+.mensagem-minha {
+    background-color: #dcf8c6; color: #333; align-self: flex-end;
+}
+.mensagem-outra {
+    background-color: #fff; color: #333; align-self: flex-start;
+}
+.remetente-nome {
+    font-size: 0.8rem; font-weight: bold; color: #007bff; margin-bottom: 4px;
+}
+
+/* Campo de digitação (fixo no final) */
+#form-mensagem {
+    display: flex;
+    padding: 0.5rem;
+    border-top: 1px solid #ddd;
+    align-items: center;
+    flex-shrink: 0;
+}
+#input-mensagem {
+    flex-grow: 1;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding: 10px 15px;
+    font-size: 1rem;
+}
+#form-mensagem button {
+    background: #007bff; 
+    color: white; 
+    border: none;
+    border-radius: 50%; 
+    width: 45px; 
+    height: 45px;
+    font-size: 1.2rem; 
+    cursor: pointer;
+    margin-left: 8px;
+    padding: 0; 
+    margin-top: 0;
+}
+.card-actions {
+    display: flex;
+    justify-content: center; /* Centraliza os botões */
+    gap: 10px; /* Cria um espaço entre os botões */
+    margin-top: 1rem;
+}
+
+/* Regra específica para os botões DENTRO de .card-actions */
+.card-actions btn-mensagem {
+    width: auto; /* Faz o botão ter a largura do seu conteúdo */
+    padding: 10px 20px; /* Define um tamanho padrão para os botões de ação */
+    font-size: 1.2rem;
+    margin-top: 0; /* Remove a margem extra da regra geral de botões */
+}
+}

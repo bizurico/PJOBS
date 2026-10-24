@@ -1,0 +1,13 @@
+﻿# Python
+Backend/venv/
+Backend/__pycache__/
+*.pyc
+
+# SQLite
+Backend/pjobs.db
+
+# VS Code
+.vscode/
+
+# Node/npm (se usar)
+node_modules/

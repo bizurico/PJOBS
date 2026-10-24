@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"/>
+    
+    <script src="//cdn.jsdelivr.net/npm/eruda"></script>
+
+    <title>PJobs - Área do Cliente</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+
+<header class="main-header">
+    <div class="sidebar">
+        <div id="menu-usuario-logado" class="user-dropdown">
+            <button id="user-sidebar-btn">
+                <span class="avatar">👤</span>
+                <span class="sidebar-ola">Olá, <span id="sidebar-nome"></span>!</span>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="sidebar-menu" id="sidebar-menu">
+                <a href="perfil.html">Meus Dados</a>
+                <a href="#" onclick="abrirAbaHistorico(event)">Histórico</a>
+                <a href="chat.html">Mensagens</a>
+                <a href="#" id="sidebar-logout">Sair</a>
+            </div>
+        </div>
+        <div id="menu-deslogado">
+            <a href="login.html">Login</a>
+            <a href="cadastro.html" class="btn-cadastro">Cadastro</a>
+        </div>
+    </div>
+    <div class="header-right">
+        <button id="btn-voltar-header" class="btn-voltar" style="display: none;">← Voltar</button>
+        <a href="index.html" class="logo">PJobs</a>
+    </div>
+</header>
+
+<main class="cliente-container">
+
+    <section class="busca-container">
+        <h2>Profissionais Disponíveis</h2>
+        <form id="form-busca">
+            <input type="search" id="input-busca" placeholder="Busque por área ou nome...">
+            <button type="submit">Buscar</button>
+        </form>
+    </section>
+
+    <section id="secao-resultados-busca" style="display: none;">
+        <h2 id="titulo-resultados">Resultados da Busca</h2>
+        <button id="btn-voltar-categorias" class="btn-voltar">← Voltar</button>
+        <div id="container-resultados" class="card-grid"></div>
+    </section>
+
+    <section id="secao-profissionais" style="display: none;">
+        <h2 id="titulo-profissionais">Profissionais</h2>
+        <button id="btn-voltar-para-areas" class="btn-voltar">← Voltar</button>
+        <div id="lista-profissionais" class="card-grid"></div>
+    </section>
+
+    <section id="secao-areas-atuacao">
+        <h2>Explore por Área de Atuação</h2>
+        <div id="lista-areas-atuacao" class="card-grid"></div>
+    </section>
+
+    <section id="secao-servicos-andamento">
+        <h2>Serviços em Andamento</h2>
+        <div id="container-servicos-andamento" class="card-grid"></div>
+    </section>
+
+    <hr style="margin: 30px 0;">
+
+    <div id="modal-solicitacao" class="modal-overlay" style="display: none;">
+      <div class="modal-content">
+        <h3>Descreva o serviço</h3>
+        <p>Detalhe o que você precisa...</p>
+        <textarea id="descricao-solicitacao" rows="4"></textarea>
+        <div class="modal-actions">
+            <button class="btn-secundario" onclick="fecharModalSolicitacao()">Cancelar</button>
+            <button id="btn-confirmar-solicitacao">Confirmar</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="modal-avaliacao" class="modal-overlay" style="display: none;">
+      <div class="modal-content">
+        <button class="modal-close" onclick="fecharModalAvaliacao()">X</button>
+        <h3 id="modal-avaliacao-titulo">Avalie o Serviço</h3>
+        <p>Sua opinião é importante!</p>
+        <div class="estrelas-avaliacao">
+          <span data-nota="1"><i class="fa-regular fa-star"></i></span>
+          <span data-nota="2"><i class="fa-regular fa-star"></i></span>
+          <span data-nota="3"><i class="fa-regular fa-star"></i></span>
+          <span data-nota="4"><i class="fa-regular fa-star"></i></span>
+          <span data-nota="5"><i class="fa-regular fa-star"></i></span>
+        </div>
+        <textarea id="comentario-avaliacao" placeholder="Deixe um comentário (opcional)..." rows="4"></textarea>
+        <input type="hidden" id="avaliacao-id-solicitacao">
+        <input type="hidden" id="avaliacao-cpf-avaliador">
+        <input type="hidden" id="avaliacao-cpf-avaliado">
+        <button onclick="enviarAvaliacao()">Enviar Avaliação</button>
+      </div>
+    </div>
+
+    <div id="modal-ver-avaliacoes" class="modal-overlay" style="display: none;">
+  <div class="modal-content">
+    <button class="modal-close" onclick="fecharModalVerAvaliacoes()">X</button>
+    <h3>Avaliações Recebidas</h3>
+    
+    <div id="lista-comentarios-container" class="lista-comentarios">
+        <p>Carregando...</p>
+    </div>
+  </div>
+</div>
+
+</main>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

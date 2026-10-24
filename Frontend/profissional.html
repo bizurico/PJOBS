@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"/>
+    <title>PJobs - Painel do Profissional</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+<header class="main-header">
+    <div class="sidebar">
+        <div id="menu-usuario-logado" class="user-dropdown">
+            <button id="user-sidebar-btn">
+                <span class="avatar">👤</span>
+                <span class="sidebar-ola">Olá, <span id="sidebar-nome"></span>!</span>
+                <span class="arrow">▼</span>
+            </button>
+            <div class="sidebar-menu" id="sidebar-menu">
+                <a href="perfil.html">Meus Dados</a>
+                <a href="#" onclick="abrirAbaHistorico(event)">Histórico</a>
+                <a href="chat.html">Mensagens</a>
+                <a href="#" id="sidebar-logout">Sair</a>
+            </div>
+        </div>
+        <div id="menu-deslogado">
+            <a href="login.html">Login</a>
+            <a href="cadastro.html" class="btn-cadastro">Cadastro</a>
+        </div>
+    </div>
+    <div class="header-right">
+        <a href="index.html" class="logo">PJobs</a>
+    </div>
+</header>
+
+<main class="cliente-container">
+    
+    <div class="bloco-servicos">
+        <h2>Novas Solicitações</h2>
+        <div id="novas-solicitacoes-container" class="card-grid"></div>
+    </div>
+    
+    <div class="bloco-servicos">
+        <h2>Serviços Agendados</h2>
+        <div id="servicos-agendados-container" class="card-grid"></div>
+    </div>
+
+</main>
+
+<div id="modal-ver-avaliacoes" class="modal-overlay" style="display: none;">
+  <div class="modal-content">
+    <button class="modal-close" onclick="fecharModalVerAvaliacoes()">X</button>
+    <h3>Avaliações Recebidas</h3>
+    
+    <div id="lista-comentarios-container" class="lista-comentarios">
+        <p>Carregando...</p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+<script src="script.js"></script>
+<script>
+    // Inicializa o chat quando abrir chat.html
+    if (window.location.href.includes("chat.html")) {
+        ativarPaginaChat();
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>PJobs - Login</title>
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+
+<body class="tela-login">
+  <script>
+        // Esta função precisa estar disponível, então a definimos aqui também
+        function redirecionarPorTipo() {
+            const tipo = localStorage.getItem('tipo');
+            if (tipo === 'cliente') {
+                window.location.href = 'cliente.html';
+            } else if (tipo === 'prestador') {
+                window.location.href = 'profissional.html';
+            }
+        }
+        
+        // Se encontrar um CPF salvo, significa que o usuário já está logado.
+        if (localStorage.getItem('cpf')) {
+            // Então, redireciona para a página correta.
+            redirecionarPorTipo();
+        }
+    </script>
+  <div class="form-container">
+    <h1>PJobs</h1>
+    <p>Faça login para acessar</p>
+
+    <form id="formLogin">
+      <label>Email</label>
+      <input type="email" id="emailLogin" required/>
+      <label>Senha</label>
+      <input type="password" id="senhaLogin" required/>
+      <button type="submit">Entrar</button>
+    </form>
+    
+    <p class="texto-troca-form">Não tem conta? <a href="cadastro.html">Cadastre-se</a></p>
+  </div>
+  
+  <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Minhas Mensagens - PJobs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="styles.css"/>
+</head>
+</body>
+</html>
+<body class="pagina-chat">
+
+    <div class="chat-container">
+
+        <!-- LISTA DE CONVERSAS -->
+        <div id="lista-conversas-container">
+            <header class="chat-header">
+                <button id="btn-voltar-principal" class="btn-voltar-chat">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <h1>Conversas</h1>
+            </header>
+            <div id="lista-conversas" class="lista-items"></div>
+        </div>
+
+        <!-- JANELA DE CHAT -->
+        <div id="janela-chat">
+            <header class="chat-header">
+                <button id="btn-voltar-lista" class="btn-voltar-chat">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <div id="avatar-chat-ativo" class="chat-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <h2 id="nome-chat-ativo"></h2>
+            </header>
+
+            <div id="mensagens-container"></div>
+
+            <!-- O truque mais importante -->
+            <form id="form-mensagem" onsubmit="return false;"> <input type="text" id="input-mensagem" ...>
+                <button type="button" id="btn-enviar-mensagem"><i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
